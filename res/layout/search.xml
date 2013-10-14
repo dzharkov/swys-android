@@ -17,6 +17,14 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:text="@string/search_button_name"
-            android:onClick="startCropButtonProcess"
+            android:onClick="searchButtonProcess"
             />
+    <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress_bar"
+            android:visibility="gone"
+            style="?android:progressBarStyleLarge"
+            android:scrollbarStyle="outsideOverlay"
+            android:layout_centerInParent="true"/>
 </RelativeLayout>
