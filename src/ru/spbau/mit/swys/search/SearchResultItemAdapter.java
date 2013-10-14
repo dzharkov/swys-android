@@ -39,3 +39,4 @@ public class SearchResultItemAdapter extends ArrayAdapter< SearchResultItem > {
         return row;
     }
 }
+

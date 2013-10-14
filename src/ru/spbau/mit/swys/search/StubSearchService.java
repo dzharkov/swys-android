@@ -15,3 +15,4 @@ public class StubSearchService extends SearchService {
         ));
     }
 }
+

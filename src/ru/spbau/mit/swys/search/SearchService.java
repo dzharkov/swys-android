@@ -14,3 +14,4 @@ public abstract class SearchService {
         return new SearchResult(im);
     }
 }
+
