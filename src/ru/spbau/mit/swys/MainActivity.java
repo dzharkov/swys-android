@@ -27,29 +27,10 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
     }
 
-    private Uri getTempImageFileUri() {
-
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "SWYS");
-
-        if (! mediaStorageDir.exists()){
-            if (! mediaStorageDir.mkdirs()){
-                Log.d("SWYS", "failed to create directory");
-                return null;
-            }
-        }
-
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-                "IMG_"+ timeStamp + ".jpg");
-
-        return Uri.fromFile(mediaFile);
-    }
-
     public void startButtonProcess(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        imgTempUri = getTempImageFileUri();
+        imgTempUri = Uri.fromFile(Utils.getTempImageFile());
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imgTempUri);
         startActivityForResult(takePictureIntent, TAKE_PICTURE_REQUEST);
     }

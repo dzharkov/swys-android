@@ -2,14 +2,16 @@ package ru.spbau.mit.swys.search;
 
 import android.graphics.Bitmap;
 
-public class Image {
-    private Bitmap bitmap;
+import java.io.File;
 
-    public Image(Bitmap bitmap) {
-        this.bitmap = bitmap;
+public class Image {
+    private File file;
+
+    public Image(File file) {
+        this.file = file;
     }
 
-    public Bitmap getBitmap() {
-        return bitmap;
+    public File getFile() {
+        return file;
     }
 }
