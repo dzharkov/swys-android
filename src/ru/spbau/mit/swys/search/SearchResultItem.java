@@ -1,6 +1,9 @@
 package ru.spbau.mit.swys.search;
 
-public class SearchResultItem {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class SearchResultItem implements Parcelable {
     private String title;
     private String pictureUrl;
     private String url;
@@ -22,5 +25,31 @@ public class SearchResultItem {
     public String getUrl() {
         return url;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(getTitle());
+        parcel.writeString(getPictureUrl());
+        parcel.writeString(getUrl());
+    }
+
+    public static final Parcelable.Creator<SearchResultItem> CREATOR = new Parcelable.Creator<SearchResultItem>() {
+        public SearchResultItem createFromParcel(Parcel in) {
+            return new SearchResultItem(
+                    in.readString(),
+                    in.readString(),
+                    in.readString()
+            );
+        }
+
+        public SearchResultItem[] newArray(int size) {
+            return new SearchResultItem[size];
+        }
+    };
 }
 

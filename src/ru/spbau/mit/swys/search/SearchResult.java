@@ -26,13 +26,7 @@ public class SearchResult implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(items.size());
-
-        for (SearchResultItem item : items) {
-            parcel.writeString(item.getTitle());
-            parcel.writeString(item.getPictureUrl());
-            parcel.writeString(item.getUrl());
-        }
+        parcel.writeArray(items.toArray());
     }
 
     public static final Parcelable.Creator<SearchResult> CREATOR = new Parcelable.Creator<SearchResult>() {
@@ -46,13 +40,9 @@ public class SearchResult implements Parcelable {
         }
     };
 
-    // конструктор, считывающий данные из Parcel
+    // Constructor by Parcel
     private SearchResult(Parcel parcel) {
-        int size = parcel.readInt();
-        for (int i = 0; i < size; i++) {
-            SearchResultItem item = new SearchResultItem(parcel.readString(), parcel.readString(), parcel.readString());
-            items.add(item);
-        }
+        items = parcel.readArrayList(SearchResultItem.class.getClassLoader());
     }
 }
 
