@@ -8,8 +8,6 @@ import android.provider.MediaStore;
 import android.view.View;
 
 public class MainActivity extends Activity {
-    private static final int TAKE_PICTURE_REQUEST = 1000;
-
     private Uri imgTempUri;
 
     /**
@@ -26,12 +24,12 @@ public class MainActivity extends Activity {
 
         imgTempUri = Uri.fromFile(Utils.getTempImageFile());
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imgTempUri);
-        startActivityForResult(takePictureIntent, TAKE_PICTURE_REQUEST);
+        startActivityForResult(takePictureIntent, RequestCodes.TAKE_PICTURE_REQUEST);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == TAKE_PICTURE_REQUEST && resultCode == RESULT_OK) {
+        if (requestCode == RequestCodes.TAKE_PICTURE_REQUEST && resultCode == RESULT_OK) {
 
             Intent startCropActivity = new Intent(this, CropImageActivity.class);
             startCropActivity.setData(imgTempUri);

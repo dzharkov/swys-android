@@ -8,10 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 public class CropImageActivity extends Activity {
-
-    private static final int PICTURE_CROP_REQUEST = 1001;
     private Uri currentImageUri;
-
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,12 +29,12 @@ public class CropImageActivity extends Activity {
         cropIntent.putExtra("crop", "true");
         cropIntent.putExtra("return-data", true);
 
-        startActivityForResult(cropIntent, PICTURE_CROP_REQUEST);
+        startActivityForResult(cropIntent, RequestCodes.PICTURE_CROP_REQUEST);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PICTURE_CROP_REQUEST && resultCode == RESULT_OK) {
+        if (requestCode == RequestCodes.PICTURE_CROP_REQUEST && resultCode == RESULT_OK) {
             Intent searchIntent = new Intent(this, SearchActivity.class);
             searchIntent.putExtra("image", data.getExtras().getParcelable("data"));
 
