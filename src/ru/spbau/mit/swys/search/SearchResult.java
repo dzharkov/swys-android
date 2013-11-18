@@ -19,6 +19,10 @@ public class SearchResult implements Parcelable {
         return items.toArray(new SearchResultItem[items.size()]);
     }
 
+    public boolean isSuccessful() {
+        return items.size() > 0;
+    }
+
     @Override
     public int describeContents() {
         return 0;

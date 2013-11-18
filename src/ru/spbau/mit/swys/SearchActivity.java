@@ -40,7 +40,12 @@ public class SearchActivity extends BaseActivity {
         pb.setVisibility(View.INVISIBLE);
     }
 
-    private void startResultActivity(SearchResult result) {
+    private void processSearchResult(SearchResult result) {
+        if (!result.isSuccessful()) {
+            Toast.makeText(this, getString(R.string.search_query_unsuccessful_result), Toast.LENGTH_LONG).show();
+            return;
+        }
+
         Intent resultIntent = new Intent(this, ResultActivity.class);
         resultIntent.putExtra(RequestCodes.SEARCH_RESULT_EXTRA_FIELD, result);
 
@@ -98,7 +103,7 @@ public class SearchActivity extends BaseActivity {
             if (exception != null) {
                 Toast.makeText(context, exception.getMessage(), Toast.LENGTH_LONG).show();
             } else {
-                startResultActivity(result);
+                processSearchResult(result);
             }
         }
     }
