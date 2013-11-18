@@ -13,8 +13,8 @@ public class Utils {
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), "SWYS");
 
-        if (! mediaStorageDir.exists()){
-            if (! mediaStorageDir.mkdirs()){
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
                 Log.d("SWYS", "failed to create directory");
                 return null;
             }
@@ -23,7 +23,7 @@ public class Utils {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
         return new File(
-                mediaStorageDir.getPath() + File.separator + "IMG_"+ timeStamp + ".jpg"
+                mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg"
         );
     }
 }

@@ -36,7 +36,7 @@ public class SwysSearchService extends SearchService {
 
     @Override
     protected void fillSearchResult(Image im, SearchResult result) throws SearchQueryException {
-        HttpPost post = new HttpPost( getSearchMethodUrl() );
+        HttpPost post = new HttpPost(getSearchMethodUrl());
 
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
@@ -67,8 +67,7 @@ public class SwysSearchService extends SearchService {
             StringBuilder sb = new StringBuilder();
 
             String line = null;
-            while ((line = reader.readLine()) != null)
-            {
+            while ((line = reader.readLine()) != null) {
                 sb.append(line + "\n");
             }
 
@@ -93,9 +92,9 @@ public class SwysSearchService extends SearchService {
                 JSONObject imgObj = data.getJSONObject(i);
 
                 result.addItem(new SearchResultItem(
-                    imgObj.getString("title"),
-                    imgObj.getString("image_url"),
-                    imgObj.getString("description_url")
+                        imgObj.getString("title"),
+                        imgObj.getString("image_url"),
+                        imgObj.getString("description_url")
                 ));
             }
 

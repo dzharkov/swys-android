@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -29,16 +28,16 @@ public class SearchActivity extends Activity {
         Bitmap bm = getIntent().getExtras().getParcelable("image");
         currentImageBitmap = bm;
 
-        ImageView iv = (ImageView)findViewById(R.id.target_image);
+        ImageView iv = (ImageView) findViewById(R.id.target_image);
         iv.setImageBitmap(bm);
     }
 
     private void writeBitmapToFile(File file) throws FileNotFoundException {
-         currentImageBitmap.compress(Bitmap.CompressFormat.JPEG, 85, new FileOutputStream(file));
+        currentImageBitmap.compress(Bitmap.CompressFormat.JPEG, 85, new FileOutputStream(file));
     }
 
     private void processSearchCompletion() {
-        ProgressBar pb = (ProgressBar)findViewById(R.id.progress_bar);
+        ProgressBar pb = (ProgressBar) findViewById(R.id.progress_bar);
         pb.setVisibility(View.INVISIBLE);
     }
 
@@ -50,13 +49,13 @@ public class SearchActivity extends Activity {
     }
 
     public void searchButtonProcess(View view) {
-        ProgressBar pb = (ProgressBar)findViewById(R.id.progress_bar);
+        ProgressBar pb = (ProgressBar) findViewById(R.id.progress_bar);
         pb.setVisibility(View.VISIBLE);
 
         new SearchServiceGateway(this).execute();
     }
 
-    private class SearchServiceGateway extends AsyncTask< Void, Void, SearchResult > {
+    private class SearchServiceGateway extends AsyncTask<Void, Void, SearchResult> {
         private File tmpFile;
         private SearchQueryException exception;
 
@@ -77,7 +76,7 @@ public class SearchActivity extends Activity {
 
             try {
                 writeBitmapToFile(tmpFile);
-            } catch(FileNotFoundException e) {
+            } catch (FileNotFoundException e) {
                 exception = new SearchQueryException(getResources().getString(R.string.cant_write_bitmap_error_msg));
 
                 return null;

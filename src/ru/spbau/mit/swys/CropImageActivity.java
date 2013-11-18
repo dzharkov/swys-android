@@ -4,15 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class CropImageActivity extends Activity {
 
@@ -26,7 +19,7 @@ public class CropImageActivity extends Activity {
 
         currentImageUri = getIntent().getData();
 
-        ImageView iv = (ImageView)findViewById(R.id.image);
+        ImageView iv = (ImageView) findViewById(R.id.image);
         iv.setImageURI(currentImageUri);
 
         iv.refreshDrawableState();

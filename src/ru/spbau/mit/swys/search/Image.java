@@ -1,7 +1,5 @@
 package ru.spbau.mit.swys.search;
 
-import android.graphics.Bitmap;
-
 import java.io.File;
 
 public class Image {

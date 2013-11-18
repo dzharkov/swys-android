@@ -3,12 +3,10 @@ package ru.spbau.mit.swys.search;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SearchResult implements Parcelable {
-    private ArrayList< SearchResultItem > items = new ArrayList<SearchResultItem>();
+    private ArrayList<SearchResultItem> items = new ArrayList<SearchResultItem>();
 
     public SearchResult(Image image) {
     }
