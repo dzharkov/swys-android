@@ -1,13 +1,12 @@
 package ru.spbau.mit.swys;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import ru.spbau.mit.swys.search.SearchResult;
 import ru.spbau.mit.swys.search.SearchResultItemAdapter;
 
-public class ResultActivity extends Activity {
+public class ResultActivity extends BaseActivity {
     private SearchResult result;
 
     public void onCreate(Bundle savedInstanceState) {

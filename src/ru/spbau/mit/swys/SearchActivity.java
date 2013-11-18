@@ -1,6 +1,5 @@
 package ru.spbau.mit.swys;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,7 +15,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-public class SearchActivity extends Activity {
+public class SearchActivity extends BaseActivity {
 
     private Bitmap currentImageBitmap;
     private SearchService searchService = new SwysSearchService(this);

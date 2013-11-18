@@ -1,25 +1,28 @@
 package ru.spbau.mit.swys;
 
 import android.os.Environment;
-import android.util.Log;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Utils {
-    public static File getTempImageFile() {
+    private static File mediaStorageDir = new File(
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+            "SWYS"
+    );
 
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "SWYS");
-
+    public static boolean prepareTempDir() {
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
-                Log.d("SWYS", "failed to create directory");
-                return null;
+                return false;
             }
         }
 
+        return true;
+    }
+
+    public static File getTempImageFile() {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
         return new File(

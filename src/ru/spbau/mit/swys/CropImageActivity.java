@@ -1,13 +1,12 @@
 package ru.spbau.mit.swys;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class CropImageActivity extends Activity {
+public class CropImageActivity extends BaseActivity {
     private Uri currentImageUri;
 
     public void onCreate(Bundle savedInstanceState) {
