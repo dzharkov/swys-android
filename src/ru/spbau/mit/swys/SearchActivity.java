@@ -24,7 +24,7 @@ public class SearchActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
 
-        Bitmap bm = getIntent().getExtras().getParcelable("image");
+        Bitmap bm = getIntent().getExtras().getParcelable(RequestCodes.PICTURE_CROP_EXTRA_FIELD);
         currentImageBitmap = bm;
 
         ImageView iv = (ImageView) findViewById(R.id.target_image);
@@ -42,7 +42,7 @@ public class SearchActivity extends BaseActivity {
 
     private void startResultActivity(SearchResult result) {
         Intent resultIntent = new Intent(this, ResultActivity.class);
-        resultIntent.putExtra("result", result);
+        resultIntent.putExtra(RequestCodes.SEARCH_RESULT_EXTRA_FIELD, result);
 
         startActivity(resultIntent);
     }

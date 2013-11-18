@@ -14,7 +14,7 @@ public class ResultActivity extends BaseActivity {
 
         setContentView(R.layout.result);
 
-        result = getIntent().getParcelableExtra("result");
+        result = getIntent().getParcelableExtra(RequestCodes.SEARCH_RESULT_EXTRA_FIELD);
 
         ListAdapter adapter = new SearchResultItemAdapter(this, R.layout.result_item, result.getItems());
 

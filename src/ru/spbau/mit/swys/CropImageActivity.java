@@ -35,7 +35,7 @@ public class CropImageActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RequestCodes.PICTURE_CROP_REQUEST && resultCode == RESULT_OK) {
             Intent searchIntent = new Intent(this, SearchActivity.class);
-            searchIntent.putExtra("image", data.getExtras().getParcelable("data"));
+            searchIntent.putExtra(RequestCodes.PICTURE_CROP_EXTRA_FIELD, data.getExtras().getParcelable("data"));
 
             startActivity(searchIntent);
         }
