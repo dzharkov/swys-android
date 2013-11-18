@@ -6,7 +6,9 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Utils {
+public class TempStorageUtils {
+    private static final SimpleDateFormat tempFileDateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+
     private static File mediaStorageDir = new File(
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
             "SWYS"
@@ -23,7 +25,7 @@ public class Utils {
     }
 
     public static File getTempImageFile() {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String timeStamp = tempFileDateFormat.format(new Date());
 
         return new File(
                 mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg"

@@ -21,7 +21,7 @@ public class MainActivity extends BaseActivity {
     public void startButtonProcess(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        imgTempUri = Uri.fromFile(Utils.getTempImageFile());
+        imgTempUri = Uri.fromFile(TempStorageUtils.getTempImageFile());
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imgTempUri);
         startActivityForResult(takePictureIntent, RequestCodes.TAKE_PICTURE_REQUEST);
     }

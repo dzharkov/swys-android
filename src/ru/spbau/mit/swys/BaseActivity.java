@@ -8,7 +8,7 @@ abstract public class BaseActivity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!Utils.prepareTempDir()) {
+        if (!TempStorageUtils.prepareTempDir()) {
             Toast.makeText(this, getString(R.string.prepare_temp_dir_error), Toast.LENGTH_LONG).show();
             finish();
         }

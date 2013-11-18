@@ -71,7 +71,7 @@ public class SearchActivity extends BaseActivity {
 
         @Override
         protected SearchResult doInBackground(Void... voids) {
-            tmpFile = Utils.getTempImageFile();
+            tmpFile = TempStorageUtils.getTempImageFile();
 
             try {
                 writeBitmapToFile(tmpFile);
