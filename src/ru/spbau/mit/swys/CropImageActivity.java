@@ -1,43 +1,57 @@
 package ru.spbau.mit.swys;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
+import ru.spbau.mit.swys.crop.CropImageView;
+import ru.spbau.mit.swys.crop.CropUtils;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class CropImageActivity extends BaseActivity {
-    private Uri currentImageUri;
+    private Bitmap currentBitmap;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crop_image);
 
-        currentImageUri = getIntent().getData();
+        Uri currentImageUri = getIntent().getData();
+        currentBitmap = loadBitmapByUri(currentImageUri);
 
-        ImageView iv = (ImageView) findViewById(R.id.image);
-        iv.setImageURI(currentImageUri);
+        CropImageView cropImageView = (CropImageView) findViewById(R.id.image);
+        cropImageView.setImageBitmap(currentBitmap);
 
-        iv.refreshDrawableState();
+        cropImageView.refreshDrawableState();
+    }
+
+    private File writeBitmapToTempFile(Bitmap bitmap) {
+        //TODO: delete it somehow later
+        File tmpFile = TempStorageUtils.getTempImageFile();
+
+        try {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 85, new FileOutputStream(tmpFile));
+        } catch(IOException e) {
+            showErrorToastAndFinish(R.string.cant_write_bitmap_error_msg);
+        }
+
+        return tmpFile;
     }
 
     public void startCropButtonProcess(View view) {
-        Intent cropIntent = new Intent("com.android.camera.action.CROP");
+        CropImageView cropImageView = (CropImageView) findViewById(R.id.image);
 
-        cropIntent.setDataAndType(currentImageUri, "image/*");
-        cropIntent.putExtra("crop", "true");
-        cropIntent.putExtra("return-data", true);
+        Bitmap croppedBitmap = CropUtils.cropBitmap(currentBitmap, cropImageView.getCropPoints());
 
-        startActivityForResult(cropIntent, RequestCodes.PICTURE_CROP_REQUEST);
-    }
+        File file = writeBitmapToTempFile(croppedBitmap);
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == RequestCodes.PICTURE_CROP_REQUEST && resultCode == RESULT_OK) {
-            Intent searchIntent = new Intent(this, SearchActivity.class);
-            searchIntent.putExtra(RequestCodes.PICTURE_CROP_EXTRA_FIELD, data.getExtras().getParcelable("data"));
+        Intent searchIntent = new Intent(this, SearchActivity.class);
+        searchIntent.putExtra(RequestCodes.PICTURE_CROP_EXTRA_FIELD, Uri.fromFile(file));
 
-            startActivity(searchIntent);
-        }
+        startActivity(searchIntent);
     }
 }

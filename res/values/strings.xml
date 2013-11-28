@@ -9,5 +9,6 @@
     <string name="cant_write_bitmap_error_msg">Не удалось получить доступ к SD Card</string>
     <string name="prepare_temp_dir_error">Не удалось создать временную директорию</string>
     <string name="search_query_unsuccessful_result">Запрос завершен неудачно</string>
+    <string name="load_bitmap_error">Не удалось загрузить фотографию</string>
 </resources>
 
