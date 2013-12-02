@@ -125,35 +125,45 @@ public class CropImageView extends ImageView {
         int pointerId = event.getPointerId(actionIndex);
 
         if (actionCode == MotionEvent.ACTION_DOWN || actionCode == MotionEvent.ACTION_POINTER_DOWN) {
-            if (actionCode == MotionEvent.ACTION_DOWN) {
-                isStateMoving = true;
-            }
 
             Point downPoint = new Point((int) event.getX(actionIndex), (int) event.getY(actionIndex));
             int hitPointId = cropPolygon.getHitPointId(downPoint);
 
             if (hitPointId == CropPolygon.NULL_POINT_ID) {
-                pointersMap.put(pointerId, null);
+                pointersMap.remove(pointerId);
                 return false;
+            }
+
+            if (actionCode == MotionEvent.ACTION_DOWN) {
+                isStateMoving = true;
             }
 
             pointersMap.put(pointerId, hitPointId);
 
             return true;
         } else if (isStateMoving) {
-            if (!pointersMap.containsKey(pointerId)) {
-                return false;
-            }
-            int pointId = pointersMap.get(pointerId);
-
+            boolean wasChanges = false;
             if (actionCode == MotionEvent.ACTION_MOVE) {
-                if (cropPolygon.movePoint(pointId, (int) event.getX(actionIndex), (int) event.getY(actionIndex))) {
+                for (int i = 0; i < event.getPointerCount(); i++) {
+                    int curPointerId = event.getPointerId(i);
+                    Integer pointId = pointersMap.get(curPointerId);
+
+                    if (pointId == null) {
+                        continue;
+                    }
+
+                    if (cropPolygon.movePoint(pointId, (int) event.getX(i), (int) event.getY(i))) {
+                        wasChanges = true;
+                    }
+                }
+
+                if (wasChanges) {
                     invalidate();
                     return true;
                 }
             } else if (actionCode == MotionEvent.ACTION_POINTER_UP || actionCode == MotionEvent.ACTION_UP) {
 
-                pointersMap.put(pointerId, null);
+                pointersMap.remove(pointerId);
 
                 if (actionCode == MotionEvent.ACTION_UP) {
                     isStateMoving = false;

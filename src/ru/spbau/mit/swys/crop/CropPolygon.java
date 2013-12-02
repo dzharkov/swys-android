@@ -8,7 +8,7 @@ import android.graphics.RectF;
 public class CropPolygon {
 
     public static final int POINT_RADIUS = 20;
-    private static final int HIT_RADIUS_SQR = POINT_RADIUS * POINT_RADIUS;
+    private static final int HIT_RADIUS_SQR = POINT_RADIUS * POINT_RADIUS * 2;
 
     public static final int NULL_POINT_ID = -1;
 
