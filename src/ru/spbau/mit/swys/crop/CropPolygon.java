@@ -42,9 +42,9 @@ public class CropPolygon {
 
     public void initDefaultPosition() {
         points[0] = new Point(bmLayoutRect.centerX() - bmLayoutRect.width() / 4, bmLayoutRect.centerY() - bmLayoutRect.height() / 4);
-        points[1] = new Point(bmLayoutRect.centerX() - bmLayoutRect.width() / 4, bmLayoutRect.centerY() + bmLayoutRect.height() / 4);
+        points[1] = new Point(bmLayoutRect.centerX() + bmLayoutRect.width() / 4, bmLayoutRect.centerY() - bmLayoutRect.height() / 4);
         points[2] = new Point(bmLayoutRect.centerX() + bmLayoutRect.width() / 4, bmLayoutRect.centerY() + bmLayoutRect.height() / 4);
-        points[3] = new Point(bmLayoutRect.centerX() + bmLayoutRect.width() / 4, bmLayoutRect.centerY() - bmLayoutRect.height() / 4);
+        points[3] = new Point(bmLayoutRect.centerX() - bmLayoutRect.width() / 4, bmLayoutRect.centerY() + bmLayoutRect.height() / 4);
     }
 
     public Point[] getLayoutPoints() {
@@ -60,7 +60,7 @@ public class CropPolygon {
             int prev = (i - 1 + POINTS_COUNT) % POINTS_COUNT;
             int next = (i + 1) % POINTS_COUNT;
 
-            if (points[i].y > points[prev].y && points[next].y > points[i - 1].y) {
+            if (points[i].y < points[prev].y && points[next].y < points[prev].y) {
                 leftTopIndex = i;
                 break;
             }

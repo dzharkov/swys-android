@@ -2,12 +2,11 @@ package ru.spbau.mit.swys;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import ru.spbau.mit.swys.crop.CropImageView;
-import ru.spbau.mit.swys.crop.CropUtils;
+import ru.spbau.mit.swys.crop.CropManager;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,6 +14,8 @@ import java.io.IOException;
 
 public class CropImageActivity extends BaseActivity {
     private Bitmap currentBitmap;
+
+    private CropManager cropManager = new CropManager();
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,8 @@ public class CropImageActivity extends BaseActivity {
 
         cropImageView.refreshDrawableState();
     }
+
+
 
     private File writeBitmapToTempFile(Bitmap bitmap) {
         //TODO: delete it somehow later
@@ -45,7 +48,7 @@ public class CropImageActivity extends BaseActivity {
     public void startCropButtonProcess(View view) {
         CropImageView cropImageView = (CropImageView) findViewById(R.id.image);
 
-        Bitmap croppedBitmap = CropUtils.cropBitmap(currentBitmap, cropImageView.getCropPoints());
+        Bitmap croppedBitmap = cropManager.cropBitmap(currentBitmap, cropImageView.getCropPoints());
 
         File file = writeBitmapToTempFile(croppedBitmap);
 
