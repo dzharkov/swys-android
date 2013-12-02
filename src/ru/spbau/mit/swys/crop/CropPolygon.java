@@ -85,9 +85,8 @@ public class CropPolygon {
     public int getHitPointId(Point downPoint) {
         for (int i = 0; i < POINTS_COUNT; i++) {
             Point p = points[i];
-            int sqrDist = (p.x - downPoint.x) * (p.x - downPoint.x) + (p.y - downPoint.y) * (p.y - downPoint.y);
 
-            if (sqrDist <= HIT_RADIUS_SQR) {
+            if (GeomUtils.squaredDist(p, downPoint) <= HIT_RADIUS_SQR) {
                 return i;
             }
         }
@@ -124,9 +123,7 @@ public class CropPolygon {
         int x2 = points[p2].x - points[p].x;
         int y2 = points[p2].y - points[p].y;
 
-        int res = (x1 * y2 - x2 * y1);
-
-        return res > 0 ? 1 : (res == 0 ? 0 : -1);
+        return GeomUtils.angleSignBetweenVectors(x1, y1, x2, y2);
     }
 
     private boolean isConvex() {
