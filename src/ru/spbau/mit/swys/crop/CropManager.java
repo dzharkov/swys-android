@@ -5,7 +5,7 @@ import android.graphics.Point;
 import android.graphics.PointF;
 
 public class CropManager {
-    private static final int RESULT_BITMAP_SIZE = 100;
+    private static final int RESULT_BITMAP_SIZE = 400;
 
     public Bitmap cropBitmap(Bitmap srcBitmap, Point[] points) {
 
