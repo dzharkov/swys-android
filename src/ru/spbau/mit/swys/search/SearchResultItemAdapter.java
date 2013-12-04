@@ -2,12 +2,16 @@ package ru.spbau.mit.swys.search;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import ru.spbau.mit.swys.R;
 
 public class SearchResultItemAdapter extends ArrayAdapter<SearchResultItem> {
@@ -35,7 +39,37 @@ public class SearchResultItemAdapter extends ArrayAdapter<SearchResultItem> {
         linkView.setMovementMethod(LinkMovementMethod.getInstance());
         linkView.setText(Html.fromHtml("<a href=\"" + data[position].getUrl() + "\">Открыть</a>"));
 
+        ImageView imageView = (ImageView) row.findViewById(R.id.image);
+
+        new ImageDownloadTask(
+                imageView,
+                row.findViewById(R.id.image_loading)
+        ).execute(data[position].getPictureUrl());
+
         return row;
+    }
+
+    private class ImageDownloadTask extends AsyncTask<String,Void,Bitmap> {
+        private ImageView imageView;
+        private View      preloaderView;
+
+        private ImageDownloadTask(ImageView imageView, View preloaderView) {
+            this.imageView = imageView;
+            this.preloaderView = preloaderView;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            return ImageLoader.getInstance().loadImageSync(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            imageView.setImageBitmap(bitmap);
+            imageView.setVisibility(View.VISIBLE);
+
+            preloaderView.setVisibility(View.GONE);
+        }
     }
 }
 
