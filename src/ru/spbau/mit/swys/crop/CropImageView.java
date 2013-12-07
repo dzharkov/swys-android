@@ -52,6 +52,9 @@ public class CropImageView extends ImageView {
         polygonPaint.setColor(Color.WHITE);
         polygonPaint.setStyle(Paint.Style.STROKE);
         polygonPaint.setAntiAlias(true);
+
+        upperSidePaint = new Paint(polygonPaint);
+        upperSidePaint.setColor(Color.RED);
     }
 
     @Override
@@ -110,6 +113,14 @@ public class CropImageView extends ImageView {
 
         //drawing white border
         canvas.drawPath(cropPath, polygonPaint);
+
+        //drawing upper side
+        Point[] upperSide = cropPolygon.getUppedSide();
+        canvas.drawLine(
+                upperSide[0].x, upperSide[0].y,
+                upperSide[1].x, upperSide[1].y,
+                upperSidePaint
+        );
 
         //drawing control circles
         for (Point p : cropPolygon.getLayoutPoints()) {
@@ -183,6 +194,7 @@ public class CropImageView extends ImageView {
     private Paint overlayPaint;
     private Paint circlesPaint;
     private Paint polygonPaint;
+    private Paint upperSidePaint;
 
     private boolean isStateMoving = false;
 

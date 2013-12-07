@@ -5,6 +5,8 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
+import java.util.Arrays;
+
 public class CropPolygon {
 
     public static final int POINT_RADIUS = 20;
@@ -54,17 +56,7 @@ public class CropPolygon {
     public Point[] getCropPoints() {
         Point[] sortedPoints = new Point[POINTS_COUNT];
 
-        int leftTopIndex = 0;
-
-        for (int i = 0; i < POINTS_COUNT; i++) {
-            int prev = (i - 1 + POINTS_COUNT) % POINTS_COUNT;
-            int next = (i + 1) % POINTS_COUNT;
-
-            if (points[i].y < points[prev].y && points[next].y < points[prev].y) {
-                leftTopIndex = i;
-                break;
-            }
-        }
+        final int leftTopIndex = 0;
 
         float[] pointsForMatrix = new float[2 * POINTS_COUNT];
 
@@ -136,5 +128,9 @@ public class CropPolygon {
         }
 
         return true;
+    }
+
+    public Point[] getUppedSide() {
+        return Arrays.copyOf(points, 2);
     }
 }
