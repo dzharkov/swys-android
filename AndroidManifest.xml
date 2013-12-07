@@ -10,6 +10,7 @@
     <application
             android:label="@string/app_name"
             android:icon="@drawable/ic_launcher"
+            android:theme="@style/Theme.Swys"
             android:name=".SwysApplication">
         <activity android:name="MainActivity"
                   android:label="@string/app_name">
