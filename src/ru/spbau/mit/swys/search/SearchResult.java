@@ -7,8 +7,10 @@ import java.util.ArrayList;
 
 public class SearchResult implements Parcelable {
     private ArrayList<SearchResultItem> items = new ArrayList<SearchResultItem>();
+    private Image image;
 
     public SearchResult(Image image) {
+        this.image = image;
     }
 
     public void addItem(SearchResultItem item) {
@@ -19,8 +21,17 @@ public class SearchResult implements Parcelable {
         return items.toArray(new SearchResultItem[items.size()]);
     }
 
+    public SearchResultItem getItem(int id) {
+        return items.get(id);
+    }
+
+
     public boolean isSuccessful() {
         return items.size() > 0;
+    }
+
+    public Image getImage() {
+        return image;
     }
 
     @Override

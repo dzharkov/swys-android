@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -35,16 +33,14 @@ public class SearchResultItemAdapter extends ArrayAdapter<SearchResultItem> {
         TextView titleView = (TextView) row.findViewById(R.id.item_title);
         titleView.setText(data[position].getTitle());
 
-        TextView linkView = (TextView) row.findViewById(R.id.item_link);
-        linkView.setMovementMethod(LinkMovementMethod.getInstance());
-        linkView.setText(Html.fromHtml("<a href=\"" + data[position].getUrl() + "\">Открыть</a>"));
-
         ImageView imageView = (ImageView) row.findViewById(R.id.image);
 
         new ImageDownloadTask(
                 imageView,
                 row.findViewById(R.id.image_loading)
         ).execute(data[position].getPictureUrl());
+
+        row.setOnCreateContextMenuListener((View.OnCreateContextMenuListener) context);
 
         return row;
     }

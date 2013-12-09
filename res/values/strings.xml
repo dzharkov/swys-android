@@ -12,5 +12,10 @@
     <string name="load_bitmap_error">Не удалось загрузить фотографию</string>
     <string name="progress_dialog_title">SWYS</string>
     <string name="progress_dialog_msg">Loading..</string>
+    <string name="open_description">Open Description</string>
+    <string name="share">Share</string>
+    <string name="save_to_gallery">Save to gallery</string>
+    <string name="share_title">Share</string>
+    <string name="share_text">SWYS have found this</string>
 </resources>
 
