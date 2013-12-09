@@ -15,9 +15,17 @@
     <Button android:id="@+id/startCrop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:text="@string/start_crop_button_name"
             android:onClick="startCropButtonProcess"
+            />
+    <Button android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:text="@string/search_button_name"
+            android:onClick="startSearchButtonProcess"
             />
 </RelativeLayout>
