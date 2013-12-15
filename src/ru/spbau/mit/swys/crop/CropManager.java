@@ -43,11 +43,17 @@ public class CropManager {
             float[] firstLine = equations[firstLineIndex];
             float[] secondLine = equations[secondLineIndex];
 
-            firstLine[0] = p1.x;             firstLine[1] = p1.y;  firstLine[2] = 1;
-            firstLine[6] = - (p1.x * p2.x);  firstLine[7] = - (p1.y * p2.x);
+            firstLine[0] = p1.x;
+            firstLine[1] = p1.y;
+            firstLine[2] = 1;
+            firstLine[6] = -(p1.x * p2.x);
+            firstLine[7] = -(p1.y * p2.x);
 
-            secondLine[3] = p1.x;            secondLine[4] = p1.y; secondLine[5] = 1;
-            secondLine[6] = - (p1.x * p2.y); secondLine[7] = - (p1.y * p2.y);
+            secondLine[3] = p1.x;
+            secondLine[4] = p1.y;
+            secondLine[5] = 1;
+            secondLine[6] = -(p1.x * p2.y);
+            secondLine[7] = -(p1.y * p2.y);
 
             values[firstLineIndex] = p2.x;
             values[secondLineIndex] = p2.y;
@@ -98,11 +104,13 @@ public class CropManager {
 
         for (int row = 0; row < RESULT_BITMAP_SIZE; row++) {
             for (int column = 0; column < RESULT_BITMAP_SIZE; column++) {
-                dstBitmapPointDesc[0] = column; dstBitmapPointDesc[1] = row;
+                dstBitmapPointDesc[0] = column;
+                dstBitmapPointDesc[1] = row;
 
                 inverseProjectionMatrix.mapPoints(srcBitmapPointDesc, dstBitmapPointDesc);
 
-                srcBitmapPoint.x = srcBitmapPointDesc[0]; srcBitmapPoint.y = srcBitmapPointDesc[1];
+                srcBitmapPoint.x = srcBitmapPointDesc[0];
+                srcBitmapPoint.y = srcBitmapPointDesc[1];
 
                 resultBitmapColors[row * RESULT_BITMAP_SIZE + column] = getColorFromSource(
                         srcBitmapPoint,

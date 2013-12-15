@@ -70,7 +70,7 @@ abstract public class BaseActivity extends Activity {
 
         try {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 85, new FileOutputStream(tmpFile));
-        } catch(IOException e) {
+        } catch (IOException e) {
             showErrorToastAndFinish(R.string.cant_write_bitmap_error_msg);
         }
 

@@ -42,7 +42,7 @@ public class SwysSearchService extends SearchService {
                     Integer.valueOf(context.getString(R.string.API_PORT)),
                     context.getString(R.string.API_SEARCH_METHOD)
             ).toURI();
-        } catch(MalformedURLException e) {
+        } catch (MalformedURLException e) {
             throw new SearchQueryException("URL: wrong url parameters");
         } catch (URISyntaxException e) {
             throw new SearchQueryException("URI: syntax error");

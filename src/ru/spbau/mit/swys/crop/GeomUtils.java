@@ -45,7 +45,7 @@ public class GeomUtils {
         private void applyFrom(PointF p1, PointF p2) {
             this.a = p1.y - p2.y;
             this.b = p2.x - p1.x;
-            this.c = - a * p1.x - b * p1.y;
+            this.c = -a * p1.x - b * p1.y;
         }
 
         private static float det(float a, float b, float c, float d) {
@@ -59,8 +59,8 @@ public class GeomUtils {
                 return false;
             }
 
-            dst.x = - det(c, b, other.c, other.b) / denominatorDet;
-            dst.y = - det(a, c, other.a, other.c) / denominatorDet;
+            dst.x = -det(c, b, other.c, other.b) / denominatorDet;
+            dst.y = -det(a, c, other.a, other.c) / denominatorDet;
 
             return true;
         }

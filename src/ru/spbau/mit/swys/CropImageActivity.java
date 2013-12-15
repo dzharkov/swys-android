@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -17,8 +16,6 @@ import ru.spbau.mit.swys.crop.CropManager;
 import ru.spbau.mit.swys.search.*;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class CropImageActivity extends BaseActivity {
     private Bitmap currentBitmap;
@@ -108,7 +105,7 @@ public class CropImageActivity extends BaseActivity {
         startActivity(resultIntent);
     }
 
-    private class CroppingAsyncTask extends AsyncTask<Point[],Void,File> {
+    private class CroppingAsyncTask extends AsyncTask<Point[], Void, File> {
         @Override
         protected File doInBackground(Point[]... points) {
             Bitmap croppedBitmap = cropManager.cropBitmap(currentBitmap, points[0]);

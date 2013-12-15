@@ -45,9 +45,9 @@ public class SearchResultItemAdapter extends ArrayAdapter<SearchResultItem> {
         return row;
     }
 
-    private class ImageDownloadTask extends AsyncTask<String,Void,Bitmap> {
+    private class ImageDownloadTask extends AsyncTask<String, Void, Bitmap> {
         private ImageView imageView;
-        private View      preloaderView;
+        private View preloaderView;
 
         private ImageDownloadTask(ImageView imageView, View preloaderView) {
             this.imageView = imageView;
