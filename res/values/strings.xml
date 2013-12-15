@@ -4,8 +4,6 @@
     <string name="start_button_name">Start</string>
     <string name="start_crop_button_name">Crop</string>
     <string name="search_button_name">Search</string>
-    <string name="API_URL">http://192.168.0.25:8888</string>
-    <string name="API_SEARCH_METHOD">search/random</string>
     <string name="cant_write_bitmap_error_msg">Не удалось получить доступ к SD Card</string>
     <string name="prepare_temp_dir_error">Не удалось создать временную директорию</string>
     <string name="search_query_unsuccessful_result">Запрос завершен неудачно</string>

@@ -20,6 +20,10 @@ import ru.spbau.mit.swys.R;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class SwysSearchService extends SearchService {
     private HttpClient client = new DefaultHttpClient();
@@ -30,13 +34,24 @@ public class SwysSearchService extends SearchService {
         client.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
     }
 
-    private String getSearchMethodUrl() {
-        return context.getString(R.string.API_URL) + "/" + context.getString(R.string.API_SEARCH_METHOD);
+    private URI getSearchMethodUri() throws SearchQueryException {
+        try {
+            return new URL(
+                    context.getString(R.string.API_PROTOCOL),
+                    context.getString(R.string.API_HOST),
+                    Integer.valueOf(context.getString(R.string.API_PORT)),
+                    context.getString(R.string.API_SEARCH_METHOD)
+            ).toURI();
+        } catch(MalformedURLException e) {
+            throw new SearchQueryException("URL: wrong url parameters");
+        } catch (URISyntaxException e) {
+            throw new SearchQueryException("URI: syntax error");
+        }
     }
 
     @Override
     protected void fillSearchResult(Image im, SearchResult result) throws SearchQueryException {
-        HttpPost post = new HttpPost(getSearchMethodUrl());
+        HttpPost post = new HttpPost(getSearchMethodUri());
 
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
