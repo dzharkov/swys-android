@@ -24,7 +24,7 @@ public class CropImageActivity extends BaseActivity {
     private Bitmap currentBitmap;
 
     private CropManager cropManager = new CropManager();
-    private SearchService searchService = new StubSearchService();
+    private SearchService searchService = new SwysSearchService(this);
 
     private AsyncTask currentTask;
     private ProgressDialog progressDialog;

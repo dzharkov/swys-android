@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CropImageView extends ImageView {
 
@@ -153,7 +154,7 @@ public class CropImageView extends ImageView {
 
             return true;
         } else if (isStateMoving) {
-            boolean wasChanges = false;
+            boolean wereChanges = false;
             if (actionCode == MotionEvent.ACTION_MOVE) {
                 for (int i = 0; i < event.getPointerCount(); i++) {
                     int curPointerId = event.getPointerId(i);
@@ -164,11 +165,11 @@ public class CropImageView extends ImageView {
                     }
 
                     if (cropPolygon.movePoint(pointId, (int) event.getX(i), (int) event.getY(i))) {
-                        wasChanges = true;
+                        wereChanges = true;
                     }
                 }
 
-                if (wasChanges) {
+                if (wereChanges) {
                     invalidate();
                     return true;
                 }
@@ -198,5 +199,5 @@ public class CropImageView extends ImageView {
 
     private boolean isStateMoving = false;
 
-    private HashMap<Integer, Integer> pointersMap = new HashMap<Integer, Integer>();
+    private Map<Integer, Integer> pointersMap = new HashMap<Integer, Integer>();
 }
