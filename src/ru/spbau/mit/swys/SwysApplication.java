@@ -14,6 +14,8 @@ public class SwysApplication extends Application {
                 .defaultDisplayImageOptions(DisplayImageOptions.createSimple())
                 .build();
         ImageLoader.getInstance().init(config);
+
+        TempStorageUtils.getInstance().init(this);
     }
 
 }

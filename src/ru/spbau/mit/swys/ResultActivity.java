@@ -76,14 +76,15 @@ public class ResultActivity extends BaseActivity {
         startActivity(browserIntent);
     }
 
-    private File writeItemImageToTempFile(SearchResultItem item) {
+    private File writeItemImageToTempFile(SearchResultItem item, boolean isWordAvailable) {
         return writeBitmapToTempFile(
-                ImageLoader.getInstance().loadImageSync(item.getPictureUrl())
+                ImageLoader.getInstance().loadImageSync(item.getPictureUrl()),
+                isWordAvailable
         );
     }
 
     private void startSharingProcess(SearchResultItem item) {
-        File imageFile = writeItemImageToTempFile(item);
+        File imageFile = writeItemImageToTempFile(item, true);
 
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
@@ -96,7 +97,7 @@ public class ResultActivity extends BaseActivity {
     private void saveToGallery(SearchResultItem item) {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 
-        Uri contentUri = Uri.fromFile(writeItemImageToTempFile(item));
+        Uri contentUri = Uri.fromFile(writeItemImageToTempFile(item, true));
 
         mediaScanIntent.setData(contentUri);
         sendBroadcast(mediaScanIntent);

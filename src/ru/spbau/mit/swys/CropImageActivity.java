@@ -113,7 +113,7 @@ public class CropImageActivity extends BaseActivity {
         protected File doInBackground(Point[]... points) {
             Bitmap croppedBitmap = cropManager.cropBitmap(currentBitmap, points[0]);
 
-            return writeBitmapToTempFile(croppedBitmap);
+            return writeBitmapToTempFile(croppedBitmap, false);
         }
 
         @Override

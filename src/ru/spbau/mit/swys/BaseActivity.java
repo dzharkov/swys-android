@@ -38,7 +38,7 @@ abstract public class BaseActivity extends Activity {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        if (!TempStorageUtils.prepareTempDir()) {
+        if (!TempStorageUtils.getInstance().prepareTempDir()) {
             showErrorToastAndFinish(R.string.prepare_temp_dir_error);
         }
     }
@@ -64,9 +64,9 @@ abstract public class BaseActivity extends Activity {
         return null;
     }
 
-    protected File writeBitmapToTempFile(Bitmap bitmap) {
+    protected File writeBitmapToTempFile(Bitmap bitmap, boolean isWordAvailable) {
         //TODO: delete it somehow later
-        File tmpFile = TempStorageUtils.getTempImageFile();
+        File tmpFile = TempStorageUtils.getInstance().getTempImageFile(isWordAvailable);
 
         try {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 85, new FileOutputStream(tmpFile));
