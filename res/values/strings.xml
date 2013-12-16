@@ -7,6 +7,8 @@
     <string name="cant_write_bitmap_error_msg">Не удалось получить доступ к SD Card</string>
     <string name="prepare_temp_dir_error">Не удалось создать временную директорию</string>
     <string name="search_query_unsuccessful_result">Запрос завершен неудачно</string>
+    <string name="db_save_unsuccessful">Не удалось сохранить запрос</string>
+    <string name="db_load_unsuccessful">Не удалось выполнить запрос</string>
     <string name="load_bitmap_error">Не удалось загрузить фотографию</string>
     <string name="progress_dialog_title">SWYS</string>
     <string name="progress_dialog_msg_cropping">Cropping..</string>
@@ -16,5 +18,7 @@
     <string name="save_to_gallery">Save to gallery</string>
     <string name="share_title">Share</string>
     <string name="share_text">SWYS have found this</string>
+    <string name="menu_history">История запросов</string>
+    <string name="clear_history">Очистить историю</string>
 </resources>
 

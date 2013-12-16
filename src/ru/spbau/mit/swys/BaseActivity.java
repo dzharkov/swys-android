@@ -2,6 +2,7 @@ package ru.spbau.mit.swys;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -43,11 +44,25 @@ abstract public class BaseActivity extends Activity {
         }
     }
 
+    private void startSearchHistoryActivity() {
+        Intent searchIntent = new Intent(this, SearchHistoryActivity.class);
+        startActivity(searchIntent);
+    }
+
+    private void startMainActivity() {
+        Intent searchIntent = new Intent(this, MainActivity.class);
+        startActivity(searchIntent);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case android.R.id.home:
+                startMainActivity();
+                return true;
+            case R.id.action_history:
+                startSearchHistoryActivity();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

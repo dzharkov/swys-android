@@ -22,5 +22,6 @@
         <activity android:name="CropImageActivity"/>
         <activity android:name="SearchActivity"/>
         <activity android:name="ResultActivity"/>
+        <activity android:name="SearchHistoryActivity"/>
     </application>
 </manifest>

@@ -16,12 +16,14 @@ import ru.spbau.mit.swys.crop.CropManager;
 import ru.spbau.mit.swys.search.*;
 
 import java.io.File;
+import java.sql.SQLException;
 
 public class CropImageActivity extends BaseActivity {
     private Bitmap currentBitmap;
 
     private CropManager cropManager = new CropManager();
     private SearchService searchService = new SwysSearchService(this);
+    private SearchResultsDatabase searchResultsDatabase = new SearchResultsDatabase(this);
 
     private AsyncTask currentTask;
     private ProgressDialog progressDialog;
@@ -97,6 +99,12 @@ public class CropImageActivity extends BaseActivity {
         if (!result.isSuccessful()) {
             Toast.makeText(this, getString(R.string.search_query_unsuccessful_result), Toast.LENGTH_LONG).show();
             return;
+        }
+
+        try {
+            searchResultsDatabase.save(result);
+        } catch (SQLException e) {
+            Toast.makeText(this, getString(R.string.search_query_unsuccessful_result), Toast.LENGTH_LONG).show();
         }
 
         Intent resultIntent = new Intent(this, ResultActivity.class);

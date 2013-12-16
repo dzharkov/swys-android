@@ -4,10 +4,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SearchResult implements Parcelable {
     private ArrayList<SearchResultItem> items = new ArrayList<SearchResultItem>();
     private Image image;
+    private Date  createdAt;
 
     public SearchResult(Image image) {
         this.image = image;
@@ -32,6 +34,14 @@ public class SearchResult implements Parcelable {
 
     public Image getImage() {
         return image;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
