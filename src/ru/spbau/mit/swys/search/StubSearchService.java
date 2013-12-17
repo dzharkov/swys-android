@@ -10,7 +10,7 @@ public class StubSearchService extends SearchService {
         ));
         result.addItem(new SearchResultItem(
                 "Данте Габриэль Россетти",
-                "http://i.allday.ru/uploads/posts/2009-01/1232719137_3.jpg",
+                "http://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Card_Players-Paul_Cezanne.jpg/286px-Card_Players-Paul_Cezanne.jpg",
                 "http://allday2.com/engine/print.php?newsid=81490"
         ));
     }

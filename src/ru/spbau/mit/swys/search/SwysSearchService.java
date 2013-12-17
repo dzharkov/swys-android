@@ -108,7 +108,7 @@ public class SwysSearchService extends SearchService {
 
                 result.addItem(new SearchResultItem(
                         imgObj.getString("title"),
-                        imgObj.getString("image_url"),
+                        imgObj.getString("thumbnail"),
                         imgObj.getString("description_url")
                 ));
             }
